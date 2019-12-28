@@ -602,6 +602,9 @@ def main(_):
             "Cannot use sequence length %d because the BERT model "
             "was only trained up to sequence length %d" %
             (FLAGS.max_seq_length, bert_config.max_position_embeddings))
+
+    tf.gfile.MakeDirs(FLAGS.output_dir)
+
     task_name = FLAGS.task_name.lower()
     if task_name not in processors:
         raise ValueError("Task not found: %s" % (task_name))
@@ -655,8 +658,11 @@ def main(_):
 
     if FLAGS.do_train:
         train_file = os.path.join(FLAGS.output_dir, "train.tf_record")
-        _,_ = filed_based_convert_examples_to_features(
-            train_examples, label_list, FLAGS.max_seq_length, tokenizer, train_file)
+        train_file_exists = os.path.exists(train_file)
+        print("###train_file_exists:", train_file_exists, " ;train_file:", train_file)
+        if not train_file_exists:
+            _,_ = filed_based_convert_examples_to_features(
+                train_examples, label_list, FLAGS.max_seq_length, tokenizer, train_file)
         logging.info("***** Running training *****")
         logging.info("  Num examples = %d", len(train_examples))
         logging.info("  Batch size = %d", FLAGS.train_batch_size)
