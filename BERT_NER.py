@@ -122,6 +122,12 @@ flags.DEFINE_integer(
 flags.DEFINE_string("middle_output", "middle_data", "Dir was used to store middle data!")
 flags.DEFINE_bool("crf", True, "use crf!")
 
+flags.DEFINE_string(
+    "gpu", '0',
+    "gpu id")
+
+os.environ['CUDA_VISIBLE_DEVICES'] = str(FLAGS.gpu)
+
 class InputExample(object):
   """A single training/test example for simple sequence classification."""
 

@@ -14,7 +14,9 @@
     --train_batch_size=32   \
     --learning_rate=2e-5   \
     --num_train_epochs=3.0   \
-    --output_dir=output/run_amttl_base
+    --output_dir=output/run_amttl_base \
+    --middle_output=middle_data/amttl \
+    --gpu=0
 
 
 #perl conlleval.pl -d '\t' < ./output/result_dir/label_test.txt
