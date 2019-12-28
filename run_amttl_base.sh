@@ -2,9 +2,9 @@
 
   python BERT_NER.py\
     --task_name="amttl"  \
-    --crf=Flase \
-    --do_train=False   \
-    --do_eval=False   \
+    --crf=False \
+    --do_train=True   \
+    --do_eval=True   \
     --do_predict=True \
     --data_dir=data_AMTTL   \
     --vocab_file=/home/leo/lh/BERT/chinese_L-12_H-768_A-12/vocab.txt  \
