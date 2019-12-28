@@ -13,13 +13,14 @@ from __future__ import print_function
 import collections
 import os
 import pickle
-from absl import flags,logging
+from absl import logging
 import modeling
 import optimization
 import tokenization
 import tensorflow as tf
 import metrics
 import numpy as np
+flags = tf.flags
 FLAGS = flags.FLAGS
 
 ## Required parameters
