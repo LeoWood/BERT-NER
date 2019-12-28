@@ -691,7 +691,7 @@ def main(_):
             is_training=False,
             drop_remainder=False)
         result = estimator.evaluate(input_fn=eval_input_fn)
-        output_eval_file = os.path.join(FLAGS.output_dir, "eval_results.txt")
+        output_eval_file = os.path.join(FLAGS.output_dir, str(FLAGS.num_train_epochs) + "_eval_results.txt")
         with open(output_eval_file,"w") as wf:
             logging.info("***** Eval results *****")
             confusion_matrix = result["confusion_matrix"]
@@ -701,6 +701,9 @@ def main(_):
             logging.info("********************R = %s*********************",  str(r))
             logging.info("********************F = %s*********************",  str(f))
             logging.info("***********************************************")
+            wf.write("********************P = %s*********************", str(p))
+            wf.write("********************R = %s*********************", str(r))
+            wf.write("********************F = %s*********************", str(f))
 
 
     if FLAGS.do_predict:
