@@ -14,7 +14,7 @@
     --train_batch_size=32   \
     --learning_rate=2e-5   \
     --num_train_epochs=5.0   \
-    --output_dir=output/run_amttl_base \
+    --output_dir=output/run_amttl_base_crf \
     --middle_output=middle_data/amttl \
     --gpu=0
 
