@@ -13,8 +13,8 @@
     --max_seq_length=128   \
     --train_batch_size=32   \
     --learning_rate=2e-5   \
-    --num_train_epochs=3.0   \
-    --output_dir=output/run_amttl_base \
+    --num_train_epochs=8.0   \
+    --output_dir=output/run_amttl_cscd_from_bert_80w \
     --middle_output=middle_data/amttl \
     --gpu=0
 
