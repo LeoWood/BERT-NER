@@ -300,7 +300,7 @@ class CCKSProcessor(DataProcessor):
         "[PAD]" for padding
         :return:
         """
-        return ["[PAD]","B_疾病和诊断","B_解剖部位","B_影像检查","B_实验室检验","B_手术","B_药物", "I_解剖部位","I_影像检查","I_实验室检验","I_手术","I_药物","O","X","[CLS]","[SEP]"]
+        return ["[PAD]","B_疾病和诊断","B_解剖部位","B_影像检查","B_实验室检验","B_手术","B_药物", "I_疾病和诊断", "I_解剖部位","I_影像检查","I_实验室检验","I_手术","I_药物","O","X","[CLS]","[SEP]"]
 
     def _create_example(self, lines, set_type):
         examples = []
