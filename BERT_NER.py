@@ -305,6 +305,8 @@ class CCKSProcessor(DataProcessor):
     def _create_example(self, lines, set_type):
         examples = []
         for (i, line) in enumerate(lines):
+            print(line)
+            exit()
             guid = "%s-%s" % (set_type, i)
             texts = tokenization.convert_to_unicode(line[0])
             labels = tokenization.convert_to_unicode(line[1])
