@@ -277,6 +277,40 @@ class AMTTLProcessor(DataProcessor):
             examples.append(InputExample(guid=guid, text=texts, label=labels))
         return examples
 
+class CCKSProcessor(DataProcessor):
+    def get_train_examples(self, data_dir):
+        return self._create_example(
+            self._read_data(os.path.join(data_dir, "train.txt")), "train"
+        )
+
+    def get_dev_examples(self, data_dir):
+        return self._create_example(
+            self._read_data(os.path.join(data_dir, "dev.txt")), "dev"
+        )
+
+    def get_test_examples(self,data_dir):
+        return self._create_example(
+            self._read_data(os.path.join(data_dir, "test.txt")), "test"
+        )
+
+
+    def get_labels(self):
+        """
+        here "X" used to represent "##eer","##soo" and so on!
+        "[PAD]" for padding
+        :return:
+        """
+        return ["[PAD]","B_疾病和诊断","B_解剖部位","B_影像检查","B_实验室检验","B_手术","B_药物", "I_解剖部位","I_影像检查","I_实验室检验","I_手术","I_药物","X","[CLS]","[SEP]"]
+
+    def _create_example(self, lines, set_type):
+        examples = []
+        for (i, line) in enumerate(lines):
+            guid = "%s-%s" % (set_type, i)
+            texts = tokenization.convert_to_unicode(line[0])
+            labels = tokenization.convert_to_unicode(line[1])
+            examples.append(InputExample(guid=guid, text=texts, label=labels))
+        return examples
+
 def convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer, mode):
     """
     :param ex_index: example num
@@ -593,7 +627,7 @@ def Writer(output_predict_file,result,batch_tokens,batch_labels,id2label):
 
 def main(_):
     logging.set_verbosity(logging.INFO)
-    processors = {"ner": NerProcessor,"amttl":AMTTLProcessor}
+    processors = {"ner": NerProcessor,"amttl":AMTTLProcessor,"ccks":CCKSProcessor}
     if not FLAGS.do_train and not FLAGS.do_eval:
         raise ValueError("At least one of `do_train` or `do_eval` must be True.")
     bert_config = modeling.BertConfig.from_json_file(FLAGS.bert_config_file)
