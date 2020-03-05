@@ -305,11 +305,9 @@ class CCKSProcessor(DataProcessor):
     def _create_example(self, lines, set_type):
         examples = []
         for (i, line) in enumerate(lines):
-            print(line)
-            exit()
             guid = "%s-%s" % (set_type, i)
-            texts = tokenization.convert_to_unicode(line[0])
-            labels = tokenization.convert_to_unicode(line[1])
+            texts = tokenization.convert_to_unicode(line[1])
+            labels = tokenization.convert_to_unicode(line[0])
             examples.append(InputExample(guid=guid, text=texts, label=labels))
         return examples
 
@@ -359,13 +357,7 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
     for i, token in enumerate(tokens):
         ntokens.append(token)
         segment_ids.append(0)
-        try:
-            label_ids.append(label_map[labels[i]])
-        except:
-            print(tokens)
-            print(textlist)
-            print(label_list)
-            exit()
+        label_ids.append(label_map[labels[i]])
     # after that we don't add "[SEP]" because we want a sentence don't have
     # stop tag, because i think its not very necessary.
     # or if add "[SEP]" the model even will cause problem, special the crf layer was used.
