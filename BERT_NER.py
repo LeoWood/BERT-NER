@@ -363,6 +363,7 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
             print(tokens)
             print(textlist)
             print(label_list)
+            exit()
     # after that we don't add "[SEP]" because we want a sentence don't have
     # stop tag, because i think its not very necessary.
     # or if add "[SEP]" the model even will cause problem, special the crf layer was used.
