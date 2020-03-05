@@ -4,6 +4,7 @@
 @Author:zhoukaiyin
 """
 
+import pickle
 
 def _read_data(input_file):
     """Read a BIO data!"""
@@ -23,7 +24,19 @@ def _read_data(input_file):
         labels.append(label)
     return lines
 
+def label_2_id():
+    a = pickle.load(open("middle_data/label2id.pkl","rb"))
+    labels = ["[PAD]","B_疾病和诊断","B_解剖部位","B_影像检查","B_实验室检验","B_手术","B_药物", "I_解剖部位","I_影像检查","I_实验室检验","I_手术","I_药物","X","[CLS]","[SEP]"]
+    label2id = {}
+    for i in range(len(labels)):
+        label2id[labels[i]] = i
+    with open("middle_data/ccks/label2id.pkl",'wb') as f:
+        pickle.dump(label2id,f)
+    print(label2id)
+
 def main():
-   lines =  _read_data("./data/train.txt")
-   print(lines)
+    label_2_id()
+    exit()
+    lines =  _read_data("./data/train.txt")
+    print(lines)
 main()
