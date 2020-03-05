@@ -25,6 +25,15 @@ def _read_data(input_file):
     return lines
 
 def label_2_id():
+    labels = []
+    with open(r'D:\UCAS\Phd\Projects\201908CsciBERT\预训练评测\Chinese-clinical-NER-master\bert_bilstm_crf\data\train.txt','r',encoding='utf-8') as f:
+        for line in f.readlines():
+            line = line.strip()
+            if line:
+                labels.append(line.split()[1])
+    print(set(labels))
+    exit()
+
     a = pickle.load(open("middle_data/label2id.pkl","rb"))
     labels = ["[PAD]","B_疾病和诊断","B_解剖部位","B_影像检查","B_实验室检验","B_手术","B_药物", "I_解剖部位","I_影像检查","I_实验室检验","I_手术","I_药物","X","[CLS]","[SEP]"]
     label2id = {}
