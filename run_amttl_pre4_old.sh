@@ -16,7 +16,7 @@
     --num_train_epochs=8.0   \
     --output_dir=output/amttl_pre4_old \
     --middle_output=middle_data/amttl \
-    --gpu=0
+    --gpu=1
 
 
 #perl conlleval.pl -d '\t' < ./output/result_dir/label_test.txt
