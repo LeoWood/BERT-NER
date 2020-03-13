@@ -16,7 +16,7 @@
     --num_train_epochs=7.0   \
     --output_dir=output/run_ccks_base \
     --middle_output=middle_data/ccks \
-    --gpu=0
+    --gpu=1
 
 
 #perl conlleval.pl -d '\t' < ./output/result_dir/label_test.txt
